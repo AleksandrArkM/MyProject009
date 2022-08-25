@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
 internal class PostAdapter (
     private val onLikeClicked: (Post) -> Unit,
     private val onRepostClicked: (Post) -> Unit
-        ): ListAdapter<Post, PostAdapter.ViewHolder>(DiffCallback) {
+): ListAdapter<Post, PostAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflator = LayoutInflater.from(parent.context)
