@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/common_spacing"  >
+    android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/avatar"
@@ -14,12 +13,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/authorName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/common_spacing"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="12dp"
         android:ellipsize="end"
         android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@id/data"
@@ -28,7 +26,7 @@
         app:layout_constraintTop_toTopOf="@id/avatar"
         tools:text="Нетология. Университет интернет-профессий" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/data"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -40,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@id/authorName"
         tools:text="21 мая в 18:36" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/options"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,7 +71,7 @@
         app:barrierDirection="bottom"
         app:constraint_referenced_ids="headTextPost" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/likesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,23 +80,23 @@
         app:layout_constraintTop_toTopOf="@id/headerBarrierUnderText" />
 
     <TextView
-        android:id="@+id/likesCount"
+        android:id="@+id/likesNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"
-        android:text="13"
-        app:layout_constraintBottom_toBottomOf="@id/likesButton"
-        app:layout_constraintStart_toEndOf="@id/likesButton"
+        android:text="@string/app_likes_input"
+        app:layout_constraintBottom_toBottomOf="@+id/likesButton"
+        app:layout_constraintStart_toEndOf="@+id/likesButton"
         app:layout_constraintTop_toBottomOf="@id/headerBarrierUnderText" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/shareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:background="@android:color/transparent"
         android:src="@drawable/ic_baseline_share_24"
-        app:layout_constraintStart_toEndOf="@id/likesCount"
+        app:layout_constraintStart_toEndOf="@id/likesNumber"
         app:layout_constraintTop_toTopOf="@id/headerBarrierUnderText" />
 
     <TextView
@@ -121,7 +119,7 @@
         app:layout_constraintBottom_toBottomOf="@id/vewsButton"
         app:layout_constraintTop_toBottomOf="@id/headerBarrierUnderText" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/vewsButton"
