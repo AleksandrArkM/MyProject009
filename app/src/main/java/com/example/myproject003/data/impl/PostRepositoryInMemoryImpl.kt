@@ -1,50 +1,49 @@
 package com.example.myproject003.data.impl
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.myproject003.data.Post
 import com.example.myproject003.data.PostRepository
 
 class PostRepositoryInMemoryImpl: PostRepository {
 
-    private val posts get() = checkNotNull(data.value) {
-        "Should not be null"
+    private var posts = List(10) { index ->
+        Post(
+            id = index + 1L,
+            author = "Netology",
+            content = "Random post $index",
+            published = "04.08.2022",
+            likeByMe = false,
+            likeCount = 165,
+            repostByMe = false,
+            repostCount = 3
+        )
     }
+    val data = MutableLiveData(posts)
 
-    override val data = MutableLiveData(
-        List(10) { index ->
-            Post(
-                id = index + 1L,
-                author = "Netology",
-                content = "Random post $index",
-                published = "04.08.2022",
-                likeByMe = false,
-                likeCount = 165,
-                repostByMe = false,
-                repostCount = 3
-            )
-        }
-    )
+    override fun getAll(): LiveData<List<Post>> = data
 
     override fun like(postId: Long) {
-
-        data.value = posts.map {
-            var quantityLikes = it.likeCount
-
-            if (it.id == postId) it.copy(
-                likeByMe = !it.likeByMe,
-                        likeCount = if (it.likeByMe == true) {quantityLikes!!-1} else {quantityLikes!!+1}
-            ) else it
+        data.value = posts.map { it ->
+            if (it.id != postId) it
+            else it.copy(likeByMe = ! it.likeByMe)
         }
+        posts = posts.map { post ->
+            if (post.id == postId) {
+                if (post.likeByMe) post.copy(likeCount = post.likeCount - 1)
+                else post.copy(likeCount = post.likeCount + 1)
+            } else post
+        }
+        data.value = posts
     }
 
     override fun repost(postId: Long) {
-
-        data.value = posts.map {
-            if (it.id == postId) it.copy(
-                repostCount = it.repostCount + 1
-            )
-            else it
+        posts = posts.map { post ->
+            if (post.id == postId) {
+                post.copy(repostCount = post.repostCount + 1)
+            } else post
         }
+        data.value = posts
     }
 
 }

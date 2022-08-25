@@ -40,6 +40,7 @@
 
     <ImageButton
         android:id="@+id/options"
+        android:checkable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -73,6 +74,7 @@
 
     <ImageButton
         android:id="@+id/likesButton"
+        android:checkable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -91,6 +93,7 @@
 
     <ImageButton
         android:id="@+id/shareButton"
+        android:checkable="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
@@ -123,6 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/vewsButton"
+        android:checkable="true"
         android:background="@android:color/transparent"
         android:layout_marginEnd="6dp"
         android:src="@drawable/ic_view_button_24"

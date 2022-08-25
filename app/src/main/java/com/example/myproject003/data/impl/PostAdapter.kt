@@ -12,15 +12,21 @@ import com.example.myproject003.databinding.PostItemBinding
 import com.example.myproject003.viewmodel.CountCheck
 import kotlin.properties.Delegates
 
-class PostAdapter (
+internal class PostAdapter (
     private val onLikeClicked: (Post) -> Unit,
     private val onRepostClicked: (Post) -> Unit
         ): ListAdapter<Post, PostAdapter.ViewHolder>(DiffCallback) {
 
-    var posts: List<Post> by Delegates.observable(emptyList()) {_, _, _ ->
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val inflator = LayoutInflater.from(parent.context)
+        val binding = PostItemBinding.inflate(inflator,parent,false)
+        return ViewHolder(binding, onLikeClicked, onRepostClicked)
     }
 
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val post = getItem(position)
+        holder.bind(post)
+    }
 
     class ViewHolder(
         private val binding: PostItemBinding,
@@ -55,17 +61,6 @@ class PostAdapter (
             {R.drawable.ic_baseline_favorite_24}
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflator = LayoutInflater.from(parent.context)
-        val binding = PostItemBinding.inflate(inflator,parent,false)
-        return ViewHolder(binding, onLikeClicked, onRepostClicked)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(posts[position])
-    }
-
-    override fun getItemCount() = posts.size
 
     private object DiffCallback : DiffUtil.ItemCallback<Post>() {
         override fun areItemsTheSame(oldItem: Post, newItem: Post) =

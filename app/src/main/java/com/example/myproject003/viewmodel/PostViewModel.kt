@@ -8,7 +8,7 @@ import com.example.myproject003.data.impl.PostRepositoryInMemoryImpl
 class PostViewModel : ViewModel() {
     private val repository: PostRepository = PostRepositoryInMemoryImpl()
 
-    val data get() = repository.data
+    val data = repository.getAll()
 
     fun onLikeClicked(post: Post) = repository.like(post.id)
     fun onRepostClicked(post: Post) = repository.repost(post.id)

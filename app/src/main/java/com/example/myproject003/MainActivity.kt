@@ -12,7 +12,7 @@ import com.example.myproject003.viewmodel.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<PostViewModel>()
+    val viewModel: PostViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         val adapter = PostAdapter(viewModel ::onLikeClicked, viewModel ::onRepostClicked)
         binding.postsRecyclerView.adapter = adapter
         viewModel.data.observe(this) {posts ->
-            adapter.posts = posts
+            adapter.submitList(posts)
         }
     }
 }
